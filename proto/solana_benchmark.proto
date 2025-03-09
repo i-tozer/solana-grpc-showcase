@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package solana.benchmark;
 
-option go_package = "github.com/i-tozer/solana-grpc-showcase/proto";
+option go_package = "github.com/i-tozer/solana-grpc-exploration/proto";
 
 // BenchmarkService provides methods to benchmark Solana RPC vs gRPC performance
 service BenchmarkService {

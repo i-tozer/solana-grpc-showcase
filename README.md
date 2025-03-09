@@ -1,32 +1,30 @@
-# Solana gRPC Showcase
+# Solana gRPC Exploration
 
-A demonstration project showcasing the implementation of gRPC with Solana blockchain. This repository serves as a technical showcase of integrating modern API technologies with blockchain infrastructure.
+A project exploring the implementation of gRPC with Solana blockchain.
 
 ## Overview
 
-This project demonstrates how to build a gRPC service layer on top of Solana blockchain, enabling efficient, type-safe, and bidirectional streaming communication for blockchain applications.
+This project explores how to build a gRPC service layer on top of Solana blockchain, enabling efficient, type-safe, and bidirectional streaming communication.
 
 ### What is gRPC?
 
-gRPC is a high-performance, open-source universal RPC framework developed by Google. It uses HTTP/2 for transport, Protocol Buffers as the interface description language, and provides features such as authentication, load balancing, and horizontal scaling.
+gRPC is an open-source RPC framework that uses HTTP/2 for transport and Protocol Buffers as the interface description language.
 
 ### What is Solana?
 
-Solana is a high-performance blockchain platform designed for decentralized applications and marketplaces. It offers fast transaction speeds, low costs, and a growing ecosystem of applications.
+Solana is a blockchain platform designed for decentralized applications with high transaction throughput.
 
 ## Features
 
-- **Bidirectional Streaming**: Real-time updates from the Solana blockchain
-- **Type Safety**: Strongly typed interfaces using Protocol Buffers
-- **High Performance**: Efficient binary serialization and HTTP/2 transport
-- **Cross-Platform**: Client libraries available in multiple languages
-- **Solana Integration**: Direct interaction with Solana blockchain
-- **Performance Benchmarking**: Compare gRPC vs JSON-RPC performance
+- Bidirectional streaming for real-time blockchain data
+- Type-safe interfaces using Protocol Buffers
+- Direct interaction with Solana blockchain
+- Performance benchmarking comparing gRPC vs JSON-RPC
 
 ## Project Structure
 
 ```
-solana-grpc-showcase/
+solana-grpc-exploration/
 ├── proto/                  # Protocol Buffer definitions
 ├── server/                 # gRPC server implementation
 │   ├── solana/             # Solana blockchain integration
@@ -51,8 +49,8 @@ solana-grpc-showcase/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/i-tozer/solana-grpc-showcase.git
-   cd solana-grpc-showcase
+   git clone https://github.com/i-tozer/solana-grpc-exploration.git
+   cd solana-grpc-exploration
    ```
 
 2. Install Protocol Buffers compiler:
@@ -90,7 +88,7 @@ Start the gRPC server:
 make run-server
 ```
 
-By default, the server connects to the Solana mainnet RPC endpoint. You can specify a different endpoint:
+You can specify a different Solana RPC endpoint:
 
 ```bash
 ./bin/server --port=50051 --rpc-endpoint=https://api.devnet.solana.com
@@ -182,7 +180,7 @@ make run-stream-blocks
 
 ## Performance Benchmarking
 
-This project includes a comprehensive benchmarking tool to compare the performance of gRPC vs JSON-RPC for Solana operations. The benchmark measures:
+This project includes a benchmarking tool to compare the performance of gRPC vs JSON-RPC for Solana operations. The benchmark measures:
 
 - Account information retrieval
 - Transaction information retrieval
@@ -217,14 +215,8 @@ The following gRPC services are implemented:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome. Please feel free to submit a Pull Request.
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Solana Labs for their excellent blockchain platform
-- The gRPC team for their powerful RPC framework
-- The Protocol Buffers team for their efficient serialization format

@@ -9,8 +9,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/i-tozer/solana-grpc-showcase/proto"
-	"github.com/i-tozer/solana-grpc-showcase/server/services"
+	"github.com/i-tozer/solana-grpc-exploration/proto"
+	"github.com/i-tozer/solana-grpc-exploration/server/services"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

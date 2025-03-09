@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/i-tozer/solana-grpc-showcase/proto"
+	"github.com/i-tozer/solana-grpc-exploration/proto"
 	"github.com/olekukonko/tablewriter"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

@@ -9,7 +9,7 @@ import (
 
 	"github.com/gagliardetto/solana-go"
 	"github.com/gagliardetto/solana-go/rpc"
-	"github.com/i-tozer/solana-grpc-showcase/proto"
+	"github.com/i-tozer/solana-grpc-exploration/proto"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
