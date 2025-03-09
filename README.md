@@ -21,6 +21,7 @@ Solana is a high-performance blockchain platform designed for decentralized appl
 - **High Performance**: Efficient binary serialization and HTTP/2 transport
 - **Cross-Platform**: Client libraries available in multiple languages
 - **Solana Integration**: Direct interaction with Solana blockchain
+- **Performance Benchmarking**: Compare gRPC vs JSON-RPC performance
 
 ## Project Structure
 
@@ -32,10 +33,10 @@ solana-grpc-showcase/
 │   └── services/           # gRPC service implementations
 ├── client/                 # Sample client implementations
 │   ├── go/                 # Go client example
-│   ├── js/                 # JavaScript client example
-│   └── python/             # Python client example
-├── tests/                  # Integration and unit tests
-└── docs/                   # Documentation
+│   ├── js/                 # JavaScript client example (coming soon)
+│   └── python/             # Python client example (coming soon)
+├── tests/                  # Integration and unit tests (coming soon)
+└── docs/                   # Documentation (coming soon)
 ```
 
 ## Getting Started
@@ -44,9 +45,7 @@ solana-grpc-showcase/
 
 - Go 1.16+
 - Protocol Buffers compiler
-- Solana CLI tools
-- Node.js (for JavaScript client)
-- Python 3.8+ (for Python client)
+- Solana CLI tools (optional)
 
 ### Installation
 
@@ -56,41 +55,145 @@ solana-grpc-showcase/
    cd solana-grpc-showcase
    ```
 
-2. Install dependencies:
+2. Install Protocol Buffers compiler:
    ```bash
-   # Install Go dependencies
-   go mod download
-   
-   # Install JavaScript dependencies
-   cd client/js
-   npm install
-   
-   # Install Python dependencies
-   cd client/python
-   pip install -r requirements.txt
+   # macOS
+   brew install protobuf
+
+   # Ubuntu
+   sudo apt-get install protobuf-compiler
+
+   # Windows (using Chocolatey)
+   choco install protoc
    ```
 
-3. Generate gRPC code from Protocol Buffers:
+3. Install Go dependencies:
    ```bash
-   protoc --go_out=. --go-grpc_out=. proto/*.proto
+   go mod tidy
    ```
 
-4. Start a local Solana test validator:
+4. Generate Go code from Protocol Buffers:
    ```bash
-   solana-test-validator
+   make proto
    ```
 
-5. Run the gRPC server:
+5. Build the server and client:
    ```bash
-   go run server/main.go
+   make all
    ```
 
-## Example Use Cases
+### Running the Server
 
-- **Real-time Transaction Monitoring**: Stream transaction confirmations as they occur
-- **Account State Subscriptions**: Receive updates when account data changes
-- **Program Execution Monitoring**: Track program invocations and state changes
-- **Cross-Language Client Support**: Interact with Solana from any language with gRPC support
+Start the gRPC server:
+
+```bash
+make run-server
+```
+
+By default, the server connects to the Solana mainnet RPC endpoint. You can specify a different endpoint:
+
+```bash
+./bin/server --port=50051 --rpc-endpoint=https://api.devnet.solana.com
+```
+
+### Running the Client
+
+The client provides several commands to interact with the gRPC server:
+
+#### Benchmark
+
+Run a performance benchmark comparing gRPC vs JSON-RPC:
+
+```bash
+make run-benchmark
+```
+
+Or with custom parameters:
+
+```bash
+./bin/client --command=benchmark --pubkey=SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt4 --iterations=10
+```
+
+#### Get Account Info
+
+Retrieve information about a Solana account:
+
+```bash
+make run-account
+```
+
+Or with custom parameters:
+
+```bash
+./bin/client --command=account --pubkey=SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt4
+```
+
+#### Get Transaction Info
+
+Retrieve information about a Solana transaction:
+
+```bash
+./bin/client --command=transaction --signature=YOUR_TRANSACTION_SIGNATURE
+```
+
+#### Get Block Info
+
+Retrieve information about a Solana block:
+
+```bash
+make run-block
+```
+
+Or with custom parameters:
+
+```bash
+./bin/client --command=block --slot=150000000
+```
+
+#### Stream Account Updates
+
+Stream real-time updates for a Solana account:
+
+```bash
+make run-stream-accounts
+```
+
+Or with custom parameters:
+
+```bash
+./bin/client --command=stream-accounts --pubkey=SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt4
+```
+
+#### Stream Transaction Updates
+
+Stream real-time transaction updates:
+
+```bash
+make run-stream-transactions
+```
+
+#### Stream Block Updates
+
+Stream real-time block updates:
+
+```bash
+make run-stream-blocks
+```
+
+## Performance Benchmarking
+
+This project includes a comprehensive benchmarking tool to compare the performance of gRPC vs JSON-RPC for Solana operations. The benchmark measures:
+
+- Account information retrieval
+- Transaction information retrieval
+- Block information retrieval
+
+The benchmark results include:
+- Average response time
+- Minimum response time
+- Maximum response time
+- Success/failure counts
+- Overall speedup factor
 
 ## Technical Details
 
@@ -98,26 +201,19 @@ solana-grpc-showcase/
 
 The project defines several Protocol Buffer message types for Solana entities:
 
-- `Transaction`: Represents a Solana transaction
-- `Account`: Represents a Solana account state
-- `Block`: Represents a Solana block
-- `Signature`: Represents a transaction signature
+- `AccountInfoRequest/Response`: For account information retrieval
+- `TransactionRequest/Response`: For transaction information retrieval
+- `BlockRequest/Response`: For block information retrieval
+- `AccountUpdate`: For real-time account updates
+- `TransactionUpdate`: For real-time transaction updates
+- `BlockUpdate`: For real-time block updates
+- `BenchmarkRequest/Results`: For performance benchmarking
 
 ### gRPC Services
 
 The following gRPC services are implemented:
 
-- `TransactionService`: Submit and monitor transactions
-- `AccountService`: Query and subscribe to account updates
-- `BlockService`: Stream block information
-- `ProgramService`: Interact with Solana programs
-
-## Performance Considerations
-
-- **Connection Pooling**: The server implements connection pooling for Solana RPC
-- **Batching**: Requests are batched where appropriate to reduce RPC overhead
-- **Caching**: Frequently accessed data is cached to reduce load on the Solana network
-- **Backpressure Handling**: The server implements backpressure mechanisms to handle high load
+- `BenchmarkService`: Provides methods for retrieving Solana data and benchmarking performance
 
 ## Contributing
 
