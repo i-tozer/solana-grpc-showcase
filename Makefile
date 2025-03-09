@@ -26,12 +26,12 @@ run-server:
 # Run the client with benchmark command
 run-benchmark:
 	@echo "Running benchmark..."
-	@./bin/client --command=benchmark --pubkey=SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt4 --iterations=5
+	@./bin/client --command=benchmark --pubkey=CKJCVxuM99Rn3v6SBxCQ5osdwuKkWBWbdKG38pYXdfrj --iterations=5
 
 # Run the client with account command
 run-account:
 	@echo "Getting account info..."
-	@./bin/client --command=account --pubkey=SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt4
+	@./bin/client --command=account --pubkey=CKJCVxuM99Rn3v6SBxCQ5osdwuKkWBWbdKG38pYXdfrj
 
 # Run the client with transaction command
 run-transaction:
@@ -46,7 +46,7 @@ run-block:
 # Run the client with stream-accounts command
 run-stream-accounts:
 	@echo "Streaming account updates..."
-	@./bin/client --command=stream-accounts --pubkey=SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt4
+	@./bin/client --command=stream-accounts --pubkey=CKJCVxuM99Rn3v6SBxCQ5osdwuKkWBWbdKG38pYXdfrj
 
 # Run the client with stream-transactions command
 run-stream-transactions:

@@ -21,6 +21,55 @@ Solana is a blockchain platform designed for decentralized applications with hig
 - Direct interaction with Solana blockchain
 - Performance benchmarking comparing gRPC vs JSON-RPC
 
+## gRPC vs JSON-RPC Comparison
+
+This project explores the differences between gRPC and JSON-RPC for Solana blockchain interactions. Here's how these technologies compare:
+
+### Protocol & Transport
+
+| Feature | gRPC | JSON-RPC |
+|---------|------|----------|
+| **Serialization** | Protocol Buffers (binary) | JSON (text) |
+| **Transport** | HTTP/2 | Typically HTTP/1.1 |
+| **Connection** | Persistent, multiplexed | Usually new connection per request |
+
+### Data Format
+
+| Feature | gRPC | JSON-RPC |
+|---------|------|----------|
+| **Format** | Binary (smaller payloads) | Text (human-readable) |
+| **Schema** | Formal (.proto files) | Often informal or separate (OpenAPI) |
+| **Type Safety** | Strong, compile-time checking | Loose, runtime checking |
+| **Code Generation** | Built-in | Optional, not built into protocol |
+
+### Features
+
+| Feature | gRPC | JSON-RPC |
+|---------|------|----------|
+| **Streaming** | Comprehensive (unary, server, client, bidirectional) | Limited or none (depends on transport) |
+| **Timeouts** | Built-in deadline propagation | Not standardized |
+| **Middleware** | Interceptors for auth, logging, etc. | Varies by implementation |
+| **Error Handling** | Structured with status codes | Simple error objects |
+
+### Performance
+
+| Aspect | gRPC | JSON-RPC |
+|--------|------|----------|
+| **Speed** | Faster (binary serialization, HTTP/2) | Slower (text parsing overhead) |
+| **Latency** | Lower (header compression, multiplexing) | Higher (especially with many small requests) |
+| **Resource Usage** | More efficient CPU and bandwidth | Higher bandwidth consumption |
+
+### Solana Context
+
+For Solana blockchain operations:
+
+- **JSON-RPC**: Currently the standard API for most Solana applications
+- **gRPC**: Potential benefits include:
+  - Faster transaction submission and account data retrieval
+  - Real-time streaming of blockchain updates
+  - Type safety for complex blockchain data structures
+  - Lower bandwidth usage for high-frequency operations
+
 ## Project Structure
 
 ```
